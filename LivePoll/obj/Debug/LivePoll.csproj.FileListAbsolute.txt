@@ -1,0 +1,6 @@
+D:\My Projects\LivePoll\LivePoll\bin\LivePoll.dll.config
+D:\My Projects\LivePoll\LivePoll\bin\LivePoll.dll
+D:\My Projects\LivePoll\LivePoll\bin\LivePoll.pdb
+D:\My Projects\LivePoll\LivePoll\obj\Debug\LivePoll.csprojResolveAssemblyReference.cache
+D:\My Projects\LivePoll\LivePoll\obj\Debug\LivePoll.dll
+D:\My Projects\LivePoll\LivePoll\obj\Debug\LivePoll.pdb

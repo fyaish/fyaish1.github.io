@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>login</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.1.0/firebase.js"></script>
+    <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script> 
+
+</head>
+<body>
+
+    <div id="fb-root"></div>
+    <div id="loginDiv">
+        <a href="#" onclick="onLoginButtonClicked()" id="login">Login</a>
+    </div>
+    
+    <script type="text/javascript">
+        var commentsRef = new Firebase('https://firetube.firebaseio.com/comments');
+        var myUserID = null;
+
+        //Handle Login
+        function onLoginButtonClicked() {
+            commentsRef.authWithOAuthPopup('facebook', function () { });
+        }
+
+        //Create an Firebase Simple Login client so we can do Facebook auth
+        commentsRef.onAuth(function (authData) {
+            if (authData) {
+                myUserID = authData.facebook.id;
+                var img = "<img class='pic' src='https://graph.facebook.com/" + authData.facebook.id + "/picture'>";
+                var lnk = "<a target='_blank' href='http://www.facebook.com/profile.php?id=" + authData.facebook.id + "'>" + authData.facebook.displayName +"</a>";
+                $("#loginDiv").text(authData.facebook.displayName);
+                $("#loginDiv").html(img + lnk);
+            }
+        });
+
+        if(myUserID){
+            FB.api('/' + myUserID, { fields: 'last_name' }, function (response) {
+                console.log(response);
+            });
+        }
+
+</script>
+</body>
+</html>
